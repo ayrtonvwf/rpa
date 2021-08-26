@@ -102,12 +102,24 @@ const baseUrl = 'https://www.colaboraread.com.br';
       return {
         teacherName: content.querySelector<HTMLParagraphElement>('div.container-fluid > div > div.col-md-4.col-lg-3 > div:nth-child(2) > div.panel-body.no-padding-top > p')?.innerText || null,
         metrics: Object.fromEntries(metricNames.map(name => [name, parseInt(metricValues.shift(), 10)])),
-        avaEngagement: content.querySelector<HTMLHeadingElement>('#conteudo > div.container-fluid > div > div.col-md-8.col-lg-9 > div:nth-child(1) > div > div > div:nth-child(1) > div.col-md-4 > div.panel-body > div:nth-child(3) > div > h3')?.innerText || null,
-        tasks: Array.from(content.querySelectorAll('li.atividades')).map((task: any) => ({
-          id: task.getAttribute("id"),
-          title: task.querySelector('h4.timeline-title')?.innerText || null,
-          subtitle: task.querySelector('h4.timeline-title small')?.innerText || null,
-        }))
+        avaEngagement: content.querySelector<HTMLHeadingElement>('div.container-fluid > div > div.col-md-8.col-lg-9 > div:nth-child(1) > div > div > div:nth-child(1) > div.col-md-4 > div.panel-body > div:nth-child(3) > div > h3')?.innerText || null,
+        tasks: Array.from(content.querySelectorAll('li.atividades')).map((task: any) => {
+          const dates = task.querySelector('div.timeline-panel > div > p:nth-child(2) > small > em')?.innerText || null;
+          const files: HTMLAnchorElement[] = Array.from(task.querySelectorAll('ul a'));
+
+          return {
+            id: task.getAttribute("id"),
+            title: task.querySelector('h4.timeline-title')?.innerText || null,
+            subtitle: task.querySelector('h4.timeline-title small')?.innerText || null,
+            done: task.querySelector('.progress-bar small')?.innerText || null,
+            startDate: dates.split(' - ')[0],
+            endDate: dates.split(' - ')[1],
+            files: files.filter((file) => !file.href.startsWith('javascript:')).map((file) => ({
+              name: file.innerText,
+              url: file.href,
+            }))
+          }
+        })
       }
     })) as unknown as SubjectDetails;
   }
