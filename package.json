@@ -1,14 +1,13 @@
 {
   "dependencies": {
     "puppeteer": "^10.2.0",
-    "slugify": "^1.6.0",
-    "ts-node": "^10.2.1",
     "write": "^2.0.0",
     "yargs": "^17.1.1"
   },
   "scripts": {
-    "start": "ts-node src/index.ts",
-    "robot": "ts-node src/index.ts"
+    "build": "tsc",
+    "perform": "node build/index.js",
+    "start": "yarn build && yarn perform"
   },
   "devDependencies": {
     "@types/node": "^16.6.2",

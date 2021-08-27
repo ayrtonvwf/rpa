@@ -3,3 +3,4 @@ yarn-error.log
 output/**/*.json
 output/**/*.html
 output/**/*.png
+build
