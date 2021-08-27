@@ -30,7 +30,8 @@ export const extractSubjectDetails = (page: Page): Promise<SubjectDetails> => {
         return null;
       }
 
-      const timestamp = Date.parse(date.split('/').reverse().join('-'));
+      const [day, month, year] = date.split('/');
+      const timestamp = Date.parse(`20${year}-${month}-${day}`);
       return isNaN(timestamp) ? null : new Date(timestamp);
     }
 
