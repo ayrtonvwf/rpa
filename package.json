@@ -6,8 +6,10 @@
   },
   "scripts": {
     "build": "tsc",
-    "perform": "node build/index.js",
-    "start": "yarn build && yarn perform"
+    "perform:ead": "node build/ead/index.js",
+    "perform:pinhao": "node build/pinhao/index.js",
+    "start:ead": "yarn build && yarn perform:ead",
+    "start:pinhao": "yarn build && yarn perform:pinhao"
   },
   "devDependencies": {
     "@types/node": "^16.6.2",

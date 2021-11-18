@@ -61,7 +61,7 @@ const baseUrl = 'https://www.colaboraread.com.br';
   /**
    * @todo gravar em um armazenamento genérico
    */
-  await write('output/data/data.json', JSON.stringify(subjects, null, 2));
+  await write('output/ead/data/data.json', JSON.stringify(subjects, null, 2));
 
   // await browser.close();
 })();
