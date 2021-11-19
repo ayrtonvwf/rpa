@@ -1,5 +1,7 @@
 {
   "dependencies": {
+    "axios": "^0.24.0",
+    "cheerio": "^1.0.0-rc.10",
     "puppeteer": "^10.2.0",
     "write": "^2.0.0",
     "yargs": "^17.1.1"
@@ -8,10 +10,14 @@
     "build": "tsc",
     "perform:ead": "node build/ead/index.js",
     "perform:pinhao": "node build/pinhao/index.js",
+    "perform:moblove": "node build/moblove/index.js",
     "start:ead": "yarn build && yarn perform:ead",
-    "start:pinhao": "yarn build && yarn perform:pinhao"
+    "start:pinhao": "yarn build && yarn perform:pinhao",
+    "start:moblove": "yarn build && yarn perform:moblove"
   },
   "devDependencies": {
+    "@types/axios": "^0.14.0",
+    "@types/cheerio": "^0.22.30",
     "@types/node": "^16.6.2",
     "@types/puppeteer": "^5.4.4",
     "@types/write": "^2.0.1",
